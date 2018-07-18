@@ -11,23 +11,22 @@ public class DepthFirstSearch {
 		
 		DepthFirstSearch dfs = new DepthFirstSearch();
 		
-		Node rootNode = dfs.new Node(1);
-			Node cn1 = dfs.new Node(11);
-				Node cn11 = dfs.new Node(111);
-					Node cn111 = dfs.new Node(1111);
-				Node cn12 = dfs.new Node(112);
-				Node cn13 = dfs.new Node(113);
-			Node cn2 = dfs.new Node(21);
-				Node cn21 = dfs.new Node(211);
-				Node cn22 = dfs.new Node(221);
-					Node cn221 = dfs.new Node(2211);
-				Node cn23 = dfs.new Node(231);
-			Node cn3 = dfs.new Node(31);
-				Node cn31 = dfs.new Node(311);
-					Node cn311 = dfs.new Node(3111);
-				Node cn32 = dfs.new Node(321);
-				Node cn33 = dfs.new Node(331);
-					Node cn331 = dfs.new Node(3311);
+												Node rootNode = dfs.new Node(1);
+				Node cn1 = dfs.new Node(11);
+				Node cn11 = dfs.new Node(111); Node cn12 = dfs.new Node(112); Node cn13 = dfs.new Node(113);
+				Node cn111 = dfs.new Node(1111);
+				
+				
+												  Node cn2 = dfs.new Node(21);
+				Node cn21 = dfs.new Node(211); 	 Node cn22 = dfs.new Node(221);  Node cn23 = dfs.new Node(231);
+												Node cn221 = dfs.new Node(2211);
+				
+												 Node cn3 = dfs.new Node(31);
+				Node cn31 = dfs.new Node(311);  Node cn32 = dfs.new Node(321);   Node cn33 = dfs.new Node(331);
+				Node cn311 = dfs.new Node(3111);								 Node cn331 = dfs.new Node(3311);
+				
+				
+					
 		
 		cn11.addNodes(Arrays.asList(cn111));
 		cn22.addNodes(Arrays.asList(cn221));
@@ -41,7 +40,7 @@ public class DepthFirstSearch {
 		System.out.println("Traversing:");
 		dfs.traverse(rootNode);
 		System.out.println("\nSearching for existing node: ");
-		dfs.searchForNode(rootNode, cn311);
+		dfs.searchForNode(rootNode, cn2);
 		System.out.println("\nSearching for random node: ");
 		dfs.searchForNode(rootNode, dfs.new Node(999));
 	}

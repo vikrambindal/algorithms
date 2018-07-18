@@ -42,7 +42,7 @@ public class BreadthFirstSearch {
 		System.out.println("Traversing:");
 		bfs.traverse(rootNode);
 		System.out.println("\nSearching for existing node: ");
-		bfs.searchForNode(rootNode, cn311);
+		bfs.searchForNode(rootNode, cn2);
 		System.out.println("\nSearching for random node: ");
 		bfs.searchForNode(rootNode, bfs.new Node(999));
 	}
