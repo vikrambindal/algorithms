@@ -12,6 +12,7 @@ public class InsertionSort {
 		System.out.println("Before: ");
 		is.printData(data);
 		
+		System.out.println();
 		is.sort(data);
 		
 		System.out.println("\nAfter: ");
@@ -27,7 +28,15 @@ public class InsertionSort {
 		int swaps = 0;
 		
 		for ( int i = 0 ; i < data.length ; i++ ) {
-			
+			int currentUnsortedItem = data[i];
+			for ( int j = i ; j > 0 ; j--) {
+				iterations++;
+				if (currentUnsortedItem < data[j-1]) {
+					data[j] = data[j-1];
+					data[j-1]= currentUnsortedItem;
+					swaps++;
+				}
+			}
 		}
 		
 		System.out.println(String.format("\n[Iterations=%s Swaps=%s]", iterations, swaps));
