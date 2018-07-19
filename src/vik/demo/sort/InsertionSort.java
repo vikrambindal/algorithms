@@ -2,7 +2,7 @@ package vik.demo.sort;
 
 import java.util.Arrays;
 
-public class InsertionSort {
+public class InsertionSort implements Sort {
 	
 	public static void main(String[] args) {
 		InsertionSort is = new InsertionSort();
@@ -23,12 +23,15 @@ public class InsertionSort {
 		Arrays.stream(data).forEach(System.out::print);
 	}
 	
-	public void sort(int[] data) {
+	public StatisticsDTO sort(int[] data) {
 		int iterations = 0;
 		int swaps = 0;
 		
+		long startTime =  System.nanoTime();
+		
 		for ( int i = 0 ; i < data.length ; i++ ) {
 			int currentUnsortedItem = data[i];
+			iterations++;
 			for ( int j = i ; j > 0 ; j--) {
 				iterations++;
 				if (currentUnsortedItem < data[j-1]) {
@@ -38,7 +41,7 @@ public class InsertionSort {
 				}
 			}
 		}
-		
-		System.out.println(String.format("\n[Iterations=%s Swaps=%s]", iterations, swaps));
+		long endTime =  System.nanoTime();
+		return new StatisticsDTO(iterations, swaps, endTime-startTime);
 	}
 }
