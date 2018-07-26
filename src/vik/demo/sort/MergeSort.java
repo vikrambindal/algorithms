@@ -3,24 +3,18 @@ package vik.demo.sort;
 import java.util.Arrays;
 
 public class MergeSort {
-	
+
 	public static void main(String[] args) {
-		MergeSort ms = new MergeSort();
+		MergeSort msort = new MergeSort();
+		int[] data = {5, 9, 3, 1, 2, 8, 4, 7, 6, 0}; 
 		
-		int[] data = {5, 9, 3, 1, 2, 8, 4, 7, 6, 0};  
+		System.out.println("Before");
+		System.out.println("Left : " + Arrays.toString(data));
 		
-		System.out.println("Before: ");
-		ms.printData(data);
+		msort.sort(data);
 		
-		System.out.println();
-		ms.sort(data);
-		
-		System.out.println("\nAfter: ");
-		ms.printData(data);
-	}
-	
-	private void printData(int[] data) {
-		Arrays.stream(data).forEach(System.out::print);
+		System.out.println("After");
+		System.out.println("Left : " + Arrays.toString(data));
 	}
 	
 	public void sort(int[] data) {
@@ -29,54 +23,56 @@ public class MergeSort {
 			return;
 		}
 		
-		int[] leftSide = slice(data, 0, data.length/2, data.length/2);
-		int[] rightSide = slice(data, (data.length/2), data.length, data.length - data.length/2);
+		int middleIndex = (int) Math.floor((data.length)/2);
+		int [] leftSide = Arrays.copyOfRange(data, 0, middleIndex);
+		int [] rightSide = Arrays.copyOfRange(data, middleIndex, data.length);
 		
+		//Split items recursively in left
 		sort(leftSide);
+		//Split items recursively in right
 		sort(rightSide);
 		
-		merge(leftSide, rightSide, data);
+		//When the items are broken down to length of 1 merge them
+		merge( leftSide, rightSide, data );
+		
 	}
 	
 	private void merge(int[] leftSide, int[] rightSide, int[] data) {
+		//System.out.println("Left : " + Arrays.toString(leftSide));
+		//System.out.println("Right : " + Arrays.toString(rightSide));
 		
-		int numOfElementsLeft = leftSide.length;
-		int numOfElementsRight = rightSide.length;
-		int i= 0,j = 0, k=0;
+		int numOfLeftElements = leftSide.length;
+		int numOfRightElements = rightSide.length;
 		
-		while ( i < numOfElementsLeft && j < numOfElementsRight) {
+		int leftIdx = 0 , rightIdx = 0, dataIdx = 0;
+		
+		while (leftIdx < numOfLeftElements && rightIdx < numOfRightElements) {
 			
-			if (leftSide[i] < rightSide[j]) {
-				data[k] = leftSide[i];
-				++i;
+			int dataLeft = leftSide[leftIdx];
+			int dataRight = rightSide[rightIdx];
+			if (dataLeft > dataRight) {
+				data[dataIdx] = rightSide[rightIdx];
+				rightIdx++;
 			} else {
-				data[k] = rightSide[j];
-				++j;
+				data[dataIdx] = leftSide[leftIdx];
+				leftIdx++;
 			}
-			++k;
+			dataIdx++;
 		}
 		
-		//fill leftovers from left
-		while( i< numOfElementsLeft) {
-			data[k] = leftSide[i];
-			++i;
-			++k;
+		//fill the remainders that couldnt be processed
+		while (leftIdx < numOfLeftElements) {
+			data[dataIdx] = leftSide[leftIdx];
+			leftIdx++;
+			dataIdx++;
 		}
-
-		//fill leftovers from right
-		while( j < numOfElementsRight) {
-			data[k] = rightSide[j];
-			++j;
-			++k;
-		}
-	}
-	
-	private int[] slice(int[] data, int start, int end, int arraySize) {
-		int [] slicedArray = new int[arraySize];
 		
-		for (int i = 0 ; i < arraySize ; i++ ) {
-			slicedArray[i] = data[start+i];
+		while (rightIdx < numOfRightElements) {
+			data[dataIdx] = rightSide[rightIdx];
+			rightIdx++;
+			dataIdx++;
 		}
-		return slicedArray;
+		
+		//System.out.println("Merged : " + Arrays.toString(data));
 	}
 }
