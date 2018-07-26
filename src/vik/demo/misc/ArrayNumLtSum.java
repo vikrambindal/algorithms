@@ -10,12 +10,13 @@ public class ArrayNumLtSum {
 		
 		int start = 0;
 		int end = data.length - 1;
+		System.out.println("From array { 2,4,6,8,9 }, follwing combos are less than sum of 14");
 		while ( start != end) {
-			System.out.println(" data: end=" + data[end] + " ,start=" + data[start]);
+			//System.out.println(" data: end=" + data[end] + " ,start=" + data[start]);
 			if (data[end] + data[start] < sum) {
 				numOfPairs += end-start;
 				t.printPairs(data, start, end);
-				System.out.println(numOfPairs);
+				//System.out.println(numOfPairs);
 			} else {
 				end--;
 			}

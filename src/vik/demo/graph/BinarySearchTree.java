@@ -62,8 +62,10 @@ public class BinarySearchTree {
 		if (startNode == null) {
 			return;
 		}
+		System.out.println("Visting left: " + startNode.left);
 		inorder(startNode.left);
 		System.out.print(startNode);
+		System.out.println("Visting right: " + startNode.right);
 		inorder(startNode.right);
 	}
 	
